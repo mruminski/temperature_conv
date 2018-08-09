@@ -7,22 +7,21 @@ body {
 
 .container__btn {
   padding: 10px 15px;
-  border: 1px solid blue;
+  border: 1px solid darkblue;
   background: transparent;
-  color: blue;
+  color: darkblue;
   font-size: 2rem;
 }
 
 @media not all and (hover: none) {
 	.container__btn {
     &:hover { 
-      background: blue;
+      background: darkblue;
       color: white; 
     
     }
 	}
 }
-
 
 .container__output {
   margin-top: 15px;
