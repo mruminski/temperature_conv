@@ -12,7 +12,8 @@ btn.addEventListener('click', function() {
   if (!isNaN(temp)) {
     converted = (temp * 1.8) + 32;
     console.log(converted);
-    output.innerHTML = temp +" of Celsius is equal " + Math.floor(converted) + " Fahrenheit";
+    output.innerHTML = temp +"&#176C is equal " + 
+    Math.floor(converted) + "&#176F Fahrenheit";
   } else {
     output.innerHTML = "Wrong value";
   }
