@@ -1,51 +1,67 @@
 'use strict';
 
+// define html elements
 var output = document.getElementById('output');
-
 var btn = document.getElementById('btn');
 
-var temp;
+// variables
 var celsius;
 var fahrenheit;
 
-var msg = function(temp) {
-  if (temp <= -28) {
-    output.innerHTML += 'It\'s freezing. Stay at home!';
-  } else  if (temp <= 12) {
-    output.innerHTML += 'It\'s cold. Take something with long sleeves.';
-  } else if (temp >= 28) {
-    output.innerHTML += 'Don\'t forget about something to drink.<br>'+
+// get celsius and return fahrenheit
+var getFahrenheit = function(celsius) {
+  fahrenheit = Math.floor((celsius * 1.8) + 32);
+  return fahrenheit;
+}
+
+// get celsius and return message
+var getMsg = function(celsius) {
+  if (celsius <= -28) {
+    return 'It\'s freezing. Stay at home!';
+  } else if (celsius <= 12) {
+    return 'It\'s cold. Take something with long sleeves.';
+  } else if (celsius >= 28) {
+    return 'Don\'t forget about something to drink.<br>'+
     ' It\'s hot outside.';
   } else {
-    output.innerHTML += 'The temperature is average.';
+    return 'The temperature is average.';
   }
 }
 
+// get fahrenheit and return celsius
+var getCelsius = function(fahrenheit) {
+  celsius = Math.floor((fahrenheit - 32) * (5/9));
+  return celsius;
+}
+
+// display text on the page and add a new line
+var printOnPage = function() {
+  output.innerHTML = '<br>' + celsius + ' &#176C is equal '
+  + fahrenheit + ' &#176F <br>' + getMsg(celsius)
+  + '<br>';
+}
+
+// click buttons action
 var convCelsius = function() {
   celsius = parseInt(window.prompt('Enter the temperature in Celsius'));
   if (!isNaN(celsius)) {
-    fahrenheit = (celsius * 1.8) + 32;
-    output.innerHTML = celsius +'&#176C is equal ' + 
-    Math.floor(fahrenheit) + '&#176F <br><br>';
+    getFahrenheit(celsius);
+    printOnPage();
   } else {
     output.innerHTML = 'Wrong value';
   }
-  msg(celsius);
 }
 
 var convFahrenheit = function() {
   fahrenheit = parseInt(window.prompt('Enter the temperature in Fahrenheit'));
   if (!isNaN(fahrenheit)) {
-    celsius = (fahrenheit - 32) * (5/9);
-    console.log(celsius);
-    output.innerHTML = fahrenheit +'&#176F is equal ' + 
-    Math.floor(celsius) + '&#176C <br><br>';
+    getCelsius(fahrenheit);
+    printOnPage();
   } else {
     output.innerHTML = 'Wrong value';
+
   }
-  msg(celsius);
 }
 
 btnC.addEventListener('click', convCelsius);
-
 btnF.addEventListener('click', convFahrenheit);
